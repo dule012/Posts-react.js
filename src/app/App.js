@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom'
+import Home from './home/Home'
+import About from './about/About'
+import PostInfo from './postInfo/PostInfo'
+import Authors from './authors/Authors'
 
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        sadad
-      </React.Fragment>
+      <Switch>
+        <Route path='/post/:id/:userId' component={PostInfo} />
+        <Route path='/authors' component={Authors} />
+        <Route path='/about' component={About} />
+        <Route path='/' component={Home} />
+      </Switch>
     )
   }
 }
