@@ -35,8 +35,19 @@ const getAuthors = () => {
         })
 }
 
+const getSingleAuthor = (id) => {
+    return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then((data) => {
+            return data.json()
+        })
+        .then((data) => {
+            return new Author(data)
+        })
+}
+
 export {
     getPosts,
     getSinglePost,
-    getAuthors
+    getAuthors,
+    getSingleAuthor
 }

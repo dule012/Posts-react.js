@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { getPosts, getSinglePost } from '../../services/fetchData'
+import { getPosts, getSinglePost, getSingleAuthor } from '../../services/fetchData'
 import Header from '../partials/Header'
 import Footer from '../partials/Footer'
 
@@ -9,18 +9,21 @@ class PostInfo extends Component {
         super(props)
         this.state = {
             singlePost: {},
-            postsOfSameAuthor: []
+            postsOfSameAuthor: [],
+            author: {}
         }
     }
     componentDidMount() {
-        Promise.all([getSinglePost(this.props.match.params.id), getPosts()])
+        Promise.all([getSinglePost(this.props.match.params.id), getPosts(), getSingleAuthor(this.props.match.params.userId)])
             .then((dataArr) => {
                 const postsOfSameAuthor = dataArr[1].filter((el) => {
                     return el.userId == this.props.match.params.userId && el.id != this.props.match.params.id
                 })
+                console.log(dataArr[2])
                 this.setState({
                     singlePost: dataArr[0],
-                    postsOfSameAuthor: postsOfSameAuthor
+                    postsOfSameAuthor: postsOfSameAuthor,
+                    author: dataArr[2]
                 })
             })
     }
@@ -28,14 +31,16 @@ class PostInfo extends Component {
     getClickedPost = () => {
         setTimeout(() => {
 
-            Promise.all([getSinglePost(this.props.match.params.id), getPosts()])
+            Promise.all([getSinglePost(this.props.match.params.id), getPosts(), getSingleAuthor(this.props.match.params.userId)])
                 .then((dataArr) => {
                     const postsOfSameAuthor = dataArr[1].filter((el) => {
                         return el.userId == this.props.match.params.userId && el.id != this.props.match.params.id
                     })
+                    console.log(dataArr[2], 'adasd')
                     this.setState({
                         singlePost: dataArr[0],
-                        postsOfSameAuthor: postsOfSameAuthor
+                        postsOfSameAuthor: postsOfSameAuthor,
+                        аuthor: dataArr[2]
                     })
                 })
         }, 10)
@@ -46,6 +51,7 @@ class PostInfo extends Component {
                 <Header />
                 <div>
                     <h2>{this.state.singlePost.title}</h2>
+                    <Link to={`/author/${this.state.author.id}`}>{this.state.author.name}</Link>
                     <p>{this.state.singlePost.body}</p>
                 </div>
                 <div>
