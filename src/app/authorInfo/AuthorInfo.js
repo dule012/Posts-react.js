@@ -10,9 +10,17 @@ class AuthorInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            singleAuhtor: {},
-            lat:10,
-            lng: 10
+            lat: null,
+            lng: null,
+            city: '',
+            company: '',
+            email: '',
+            name: '',
+            phone: null,
+            street: '',
+            zipCode: null,
+            userName: ''
+
         }
     }
 
@@ -20,7 +28,17 @@ class AuthorInfo extends Component {
         getSingleAuthor(this.props.match.params.id).then((data) => {
             console.log(data)
             this.setState({
-                singleAuhtor: data
+                lat: data.lat,
+                lng: data.lng,
+                email: data.email,
+                phone: data.phone,
+                street: data.street,
+                zipCode: data.zipcode,
+                company: data.company,
+                city: data.city,
+                userName: data.username,
+                name: data.name
+
             })
         })
     }
@@ -30,13 +48,31 @@ class AuthorInfo extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <MapWithAMarker
-					center={{ lat: this.state.lat, lng: this.state.lng }}
-					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-					loadingElement={<div style={{ height: `100%` }} />}
-					containerElement={<div style={{ height: `400px` }} />}
-					mapElement={<div style={{ height: `100%` }} />}
-				/>
+                <div class="info-container">
+                    <h2>{this.state.name}</h2>
+                    <p>username: <b>{this.state.userName}</b></p>
+                    <p>email: <b>{this.state.email}</b></p>
+                    <p>phone: <b>{this.state.phone}</b></p>
+                </div>
+                <div class="adress-container">
+                    <div class="adress">
+                        <h2>Adress</h2>
+                        <p>street: <b>{this.state.street}</b></p>
+                        <p>city: <b>{this.state.city}</b></p>
+                        <p>zipCode: <b>{this.state.zipCode}</b></p>
+                    </div>
+                    <MapWithAMarker
+                        center={{ lat: parseFloat(this.state.lat), lng: parseFloat(this.state.lng) }}
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                        loadingElement={<div class="google-map1" style={{ height: `10px` }} />}
+                        containerElement={<div class="google-map2" style={{ height: `20px` }} />}
+                        mapElement={<div class="google-map3" style={{ height: `200px`,width:'400px' }} />}
+                    />
+                </div>
+                <div class="company-container">
+                    <h2>Company</h2>
+                    <p>name: <b>{this.state.company}</b></p>
+                </div>
                 <Footer />
             </React.Fragment>
 

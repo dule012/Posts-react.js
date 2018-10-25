@@ -154,3 +154,92 @@ footer {
 .author-item {
   margin-top: 5px;
 }
+
+.info-container {
+  width: 90%;
+  margin: 10px auto;
+  animation: slideLeft 2s ease-out;
+}
+.info-container h2 {
+  margin-bottom: 10px;
+}
+.info-container p {
+  margin-top: 3px;
+}
+.adress-container {
+  width: 90%;
+  margin: 60px auto;
+  overflow:hidden;
+}
+.adress-container h2 {
+  margin-bottom: 10px;
+}
+.adress-container p {
+  margin-top: 3px;
+}
+.adress{
+  float: left;
+  animation: mix1 2.7s ease-out;
+}
+.google-map3 {
+  float: right;
+  animation: mix2 3s ease-out
+}
+
+.company-container {
+  float: right;
+  margin-right: 30px;
+  animation: slideRight 2s ease-out;
+}
+.company-container h2 {
+  margin-bottom: 10px;
+}
+
+@keyframes slideLeft {
+  0%{
+    margin-left: -120%;
+  }
+  100%{
+    margin-left: 5%;
+  }
+}
+@keyframes slideRight {
+  0%{
+    margin-right: -120%;
+  }
+  100%{
+    margin-right: 5%;
+  }
+}
+@keyframes mix1 {
+  0%{
+    margin-left: -120%;
+  }
+  100%{
+    margin-left:0%;
+  }
+}
+@keyframes mix2 {
+  0%{
+    margin-right:-120%
+  }
+  100%{
+    margin-right: 0%;
+  }
+}
+
+@media screen and (min-width:992px){
+
+  header nav span{
+    font-size: 17px;
+  }
+  header h2 {
+    font-size: 28px;
+  }
+  .post-item h4 {
+    font-size: 20px;
+  }
+  .post-item p {
+    font-size: 17px;
+  }
+}
