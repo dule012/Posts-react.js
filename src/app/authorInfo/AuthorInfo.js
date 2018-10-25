@@ -10,7 +10,9 @@ class AuthorInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            singleAuhtor: {}
+            singleAuhtor: {},
+            lat:10,
+            lng: 10
         }
     }
 

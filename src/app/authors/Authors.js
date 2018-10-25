@@ -24,8 +24,10 @@ class Authors extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <h3>{`Authors(${this.state.arrOfAuthors.length})`}</h3>
-                <AuthorList arrOfAuthors={this.state.arrOfAuthors} />
+                <h2 class="authors-number">{`Authors(${this.state.arrOfAuthors.length})`}</h2>
+                <div class="authors-container"> 
+                     <AuthorList arrOfAuthors={this.state.arrOfAuthors} />
+                </div>
                 <Footer />
             </React.Fragment>
         )

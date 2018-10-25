@@ -49,17 +49,15 @@ class PostInfo extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <div>
+                <div class="postInfo-container">
                     <h2>{this.state.singlePost.title}</h2>
-                    <Link to={`/author/${this.state.author.id}`}>{this.state.author.name}</Link>
-                    <p>{this.state.singlePost.body}</p>
+                    <p class="postInfo-authorInfo"><Link to={`/author/${this.state.author.id}`} style={{ textDecoration: 'none', fontSize: '17px' }}>{this.state.author.name}</Link></p>
+                    <p class="postInfo-description">{this.state.singlePost.body}</p>
                 </div>
-                <div>
+                <div class="posts-of-same-author">
+                    <h3>Posts of same Author</h3>
                     {this.state.postsOfSameAuthor.map((el, i) => {
-                        return <Link to={`/post/${el.id}/${el.userId}`} onClick={this.getClickedPost} key={i} style={{
-                            textDecoration: 'none',
-                            display: 'block'
-                        }}>{el.title}</Link>
+                        return <p class="post-same-author" key={i}><Link to={`/post/${el.id}/${el.userId}`} onClick={this.getClickedPost} key={i}  class="post-same-author-link">{el.title}</Link></p>
                     })}
                 </div>
                 <Footer />

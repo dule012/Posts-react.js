@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 
 const AuthorItem = (props) => {
     return (
-        <Link to={`/author/${props.id}`}>
-            <h3>{props.name}</h3>
+        <h2 class="author-item"> <Link to={`/author/${props.id}`} class="author-item-link">
+            {props.name}
         </Link>
+        </h2>
     )
 }
 
